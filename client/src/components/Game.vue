@@ -9,9 +9,7 @@
           {{elementslist}} <br> 
           {{this.games[this.gameid].elements}}-->
         </div>
-      </b-card-text>
-      
-      
+      </b-card-text>      
 
     <router-link :to="{path: 'gameselect'}">
       <b-button variant="danger" class="float-left">Exit</b-button>
