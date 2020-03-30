@@ -7,7 +7,7 @@
       <b-card title="Picco" class="text-center">
       <b-card-text>
         Add  Players <br>
-        Game ausgewählt: {{selected}}   {{gameid}}    
+        <!-- Game ausgewählt: {{selected}}   {{gameid}}     -->
       </b-card-text>
       
 
