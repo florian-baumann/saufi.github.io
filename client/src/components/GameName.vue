@@ -13,8 +13,8 @@
 
       <!-- Liste aller usernames-->
       <ul class="list-group">
-        <!--task nur zum schicken an name-item component-->
-        <name-item v-for="(name, index) in names" @remove="removeName(index)" @complete="addName(task)" :task="name" :key="index"> </name-item>      
+        <!--task nur zum schicken an new-item component-->
+        <new-item v-for="(name, index) in names" @remove="removeName(index)" @complete="addName(task)" :task="name" :key="index"> </new-item>      
       </ul>
 
 
@@ -42,12 +42,12 @@
 
 
 <script>
-  import NameItem from './name-item.vue'
+  import NewItem from './new-item.vue'
 
   export default {
     name: 'GameName',
     components: {
-      NameItem
+      NewItem
     },
     props: ['selected'],
     data: function() {

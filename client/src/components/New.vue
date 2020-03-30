@@ -2,7 +2,7 @@
     <div class="gamename container">
       <b-card title="Picco" class="text-center">
       <b-card-text>
-        Add  Players <br>
+        Add  Card <br>
         <!-- Game ausgewählt: {{selected}}   {{gameid}}     -->
       </b-card-text>
       
@@ -10,7 +10,7 @@
       <!-- Liste aller usernames-->
       <ul class="list-group">
         <!--task nur zum schicken an name-item component-->
-        <name-item v-for="(name, index) in names" @remove="removeName(index)" @complete="addName(task)" :task="name" :key="index"> </name-item>      
+        <new-item v-for="(name, index) in names" @remove="removeName(index)" @complete="addName(task)" :task="name" :key="index"> </new-item>      
       </ul>
 
 
