@@ -3,23 +3,23 @@
       <b-card title="Picco" class="text-center">
       <b-card-text>
         Add  Card <br>
-        <!-- Game ausgewählt: {{selected}}   {{gameid}}     -->
       </b-card-text>
       
 
-      <!-- Liste aller usernames-->
+      <!-- Liste aller elements
+      -->
       <ul class="list-group">
         <!--task nur zum schicken an name-item component-->
-        <new-item v-for="(name, index) in names" @remove="removeName(index)" @complete="addName(task)" :task="name" :key="index"> </new-item>      
+        <new-item v-for="(element, index) in elements" @remove="removeElement(index)" @complete="addElement(task)" :task="name" :key="index"> </new-item>      
       </ul>
 
 
-      <!-- Username adden Textfeld mit Button-->
+      <!-- Elemets adden Textfeld mit Button-->
       <div class="add my-3">
         <div class="input-group ">
-            <input type="text" class="form-control" placeholder="Username" v-model="newName" @keyup.enter="addName">
+            <input type="text" class="form-control" placeholder="Element" v-model="newElement" @keyup.enter="addElement">
           <div class="input-group-append">
-            <b-button class="float-right" @click="addName()">+</b-button> <!-- v-on und @ das gleiche-->
+            <b-button class="float-right" @click="addElement()">+</b-button> <!-- v-on und @ das gleiche-->
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
         <b-button variant="secondary" class="float-left">Zurück</b-button>
       </router-link>
       <router-link :to="{name: 'Game', params: { gameid, names }}">
-        <b-button variant="success" class="float-right">Weiter</b-button>
+        <b-button variant="success" class="float-right">Speichern</b-button>
       </router-link>
       </b-card>  
     </div>
@@ -49,21 +49,21 @@
             return {
                 NewItem:'',
                 title: "",
-                elements: [],
+                elements: [
+                    "hallo",
+                ],
                 size:0,
             }
         },
         methods: {
             addElement: function () {
-                if (this.newName) {
-                    this.names.push({
-                    username: this.newName,
-                 });
-                this.newName = '';
+                if (this.newElement) {
+                    this.elements.push(this.newElements);
+                this.newElement = '';
                 }
             },
             removeElement(index) {
-                this.names.splice(index, 1);
+                this.elements.splice(index, 1);
             }
         }
     }
