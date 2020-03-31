@@ -55,21 +55,15 @@
         newName: '', 
         gameid: this.selected,
         names: [ //hier liegen dann alle namen drin
-          {
-            username: 'Becky'
-            },
-          {
-            username: 'Tom'
-          }
+          "beccky",
+          "tom"
         ]
       }
     },
     methods: {
       addName: function () {
         if (this.newName) {
-          this.names.push({
-            username: this.newName,
-          });
+          this.names.push(this.newName);
           this.newName = '';
         }
       },

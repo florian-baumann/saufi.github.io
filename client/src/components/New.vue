@@ -10,7 +10,7 @@
       -->
       <ul class="list-group">
         <!--task nur zum schicken an name-item component-->
-        <new-item v-for="(element, index) in elements" @remove="removeElement(index)" @complete="addElement(task)" :task="name" :key="index"> </new-item>      
+        <new-item v-for="(element, index) in elements" @remove="removeElement(index)" @complete="addElement(task)" :task="element" :key="index"> </new-item>      
       </ul>
 
 
@@ -29,7 +29,7 @@
       <router-link :to="{path: 'gameselect'}">
         <b-button variant="secondary" class="float-left">Zurück</b-button>
       </router-link>
-      <router-link :to="{name: 'Game', params: { gameid, names }}">
+      <router-link :to="{path: 'gameselect'}" @click="sendit(elements)">
         <b-button variant="success" class="float-right">Speichern</b-button>
       </router-link>
       </b-card>  
@@ -37,35 +37,46 @@
 </template>
 
 <script>
+    import axios from 'axios'     //TODO :kann eig auch in main.js stehen geht aber nicht
     import NewItem from './new-item.vue'
 
     export default {
-        name: 'GameName',
+        name: 'New',
         components: {
             NewItem
         },
     props: ['selected'],
         data() {
             return {
-                NewItem:'',
+                newElement:"",
                 title: "",
                 elements: [
                     "hallo",
+                    "blaba"
                 ],
-                size:0,
             }
         },
         methods: {
             addElement: function () {
                 if (this.newElement) {
-                    this.elements.push(this.newElements);
+                    this.elements.push(this.newElement);
                 this.newElement = '';
                 }
             },
             removeElement(index) {
                 this.elements.splice(index, 1);
+            },
+            sendit(arr) {
+                axios.post(
+                    'http://localhost:8081/new',
+                    {arr}
+                )
+                .catch(function(error) {
+                    // eslint-disable-next-line no-console
+                    console.log(error);
+                })
             }
-        }
+        },
     }
 
 </script>

@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios'     //TODO :kann eig auch in main.js stehen geht aber nicht
+
 export default {
   name: 'picco',
   props: {
