@@ -4,7 +4,7 @@
         <div class="w-100">
         <div class="input-group">
             <li class="list-group-item ">
-                <div>{{ task.username }} </div>
+                <div>{{ task }} </div>
             </li>
             <div class="input-group-append">
                 <b-button class="float-right " variant="danger" @click="$emit('remove')">X</b-button>
