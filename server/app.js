@@ -19,7 +19,7 @@ var games = require('./games.json')
 //];
 
 
-//-----------------------------------------------------------//
+//-----------------------------------------------------------// Spielnamen
 app.get('/names', (req, res) => {           
     var names = [];
     games.forEach(elem => {
@@ -27,8 +27,6 @@ app.get('/names', (req, res) => {
         names.push(curr)
     })        
     res.send(names);
-
-    //res.send(test);
 })
 
 function Game(title, id){           //Konstruktor
@@ -36,11 +34,16 @@ function Game(title, id){           //Konstruktor
     this.id = id;
 }
 
-//-----------------------------------------------------------//
+//-----------------------------------------------------------// spiele gesamt
 app.get('/games', (req, res) => {
     res.send(games);
   })
 
 
+//-----------------------------------------------------------//
+app.post('/new', (req, res) => {
+    //res.send('got it');
+    res.send(req.body);
 
+});
 
