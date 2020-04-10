@@ -5,6 +5,12 @@ const bodyParser = require('body-parser');
 // create an instance of express to serve our end points
 const app = express();
 
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
+
 // we'll load up node's built in file system helper library here
 // (we'll be using this later to serve our JSON files
 const fs = require('fs');
@@ -18,6 +24,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const routes = require('./routes/routes.js')(app, fs);
 
 // finally, launch our server on port 3001.
-const server = app.listen(3001, () => {
+const server = app.listen(8081, () => {
     console.log('listening on port %s...', server.address().port);
 });

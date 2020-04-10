@@ -4,6 +4,7 @@
       <b-card-text>
         <div class="txt"> 
           {{text}} <br>
+          {{$t(text)}} <br>
           <!--{{names}} <br> 
           {{this.gameid}} <br> 
           {{elementslist}} <br> 
@@ -35,12 +36,12 @@ export default {
   props: ['gameid', 'names'],
   data() {
     return {
-      text : "Lets go!",
+      text : 'Lets go!',
       counter : 0,
       init: false,
       end: false,
 
-      //name: "tom",     // test für namen var in aufgaben
+      name: "tom",     // test für namen var in aufgaben
       gamesobj: {},
       games: [
         {

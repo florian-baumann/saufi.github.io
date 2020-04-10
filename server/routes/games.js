@@ -1,7 +1,7 @@
 const gameRoutes = (app, fs) => {
 
     // variables
-    const dataPath = './data/users.json';
+    const dataPath = './data/games.json';
 
     // helper methods
     const readFile = (callback, returnJson = false, filePath = dataPath, encoding = 'utf8') => {
@@ -25,18 +25,43 @@ const gameRoutes = (app, fs) => {
         });
     };
 
-    // READ
-    app.get('/users', (req, res) => {
+    function Game(title, id){           //Konstruktor
+        this.title = title;
+        this.id = id;
+    }
+    var games = require('../data/games.json')
+    
+
+    // READ ----------------------------------------------------------------------
+
+    //GET games - ges datei
+    app.get('/games', (req, res) => {
         fs.readFile(dataPath, 'utf8', (err, data) => {
             if (err) {
                 throw err;
             }
-
             res.send(JSON.parse(data));
         });
     });
 
-    // CREATE
+    //GET names - nur namen und id                  // geht 
+    app.get('/names', (req, res) => {
+        // fs.readFile(dataPath, 'utf8', (err, data) => {
+        //     if (err) {
+        //         throw err;
+        //     }
+        //     res.send(JSON.parse(data));
+        // });
+
+        var names = [];
+        games.forEach(elem => {
+            var curr = new Game(elem.title, elem.id)
+            names.push(curr)
+        })        
+        res.send(names);
+    });
+
+    // CREATE ----------------------------------------------------------------------
     app.post('/users', (req, res) => {
 
         readFile(data => {
@@ -53,38 +78,38 @@ const gameRoutes = (app, fs) => {
     });
 
 
-    // UPDATE
-    app.put('/users/:id', (req, res) => {
+    // UPDATE ----------------------------------------------------------------------
+    // app.put('/users/:id', (req, res) => {
 
-        readFile(data => {
+    //     readFile(data => {
 
-            // add the new user
-            const userId = req.params["id"];
-            data[userId] = req.body;
+    //         // add the new user
+    //         const userId = req.params["id"];
+    //         data[userId] = req.body;
 
-            writeFile(JSON.stringify(data, null, 2), () => {
-                res.status(200).send(`users id:${userId} updated`);
-            });
-        },
-            true);
-    });
+    //         writeFile(JSON.stringify(data, null, 2), () => {
+    //             res.status(200).send(`users id:${userId} updated`);
+    //         });
+    //     },
+    //         true);
+    // });
 
 
-    // DELETE
-    app.delete('/users/:id', (req, res) => {
+    // DELETE ----------------------------------------------------------------------
+    // app.delete('/users/:id', (req, res) => {
 
-        readFile(data => {
+    //     readFile(data => {
 
-            // add the new user
-            const userId = req.params["id"];
-            delete data[userId];
+    //         // add the new user
+    //         const userId = req.params["id"];
+    //         delete data[userId];
 
-            writeFile(JSON.stringify(data, null, 2), () => {
-                res.status(200).send(`users id:${userId} removed`);
-            });
-        },
-            true);
-    });
+    //         writeFile(JSON.stringify(data, null, 2), () => {
+    //             res.status(200).send(`users id:${userId} removed`);
+    //         });
+    //     },
+    //         true);
+    // });
 };
 
 module.exports = gameRoutes;
