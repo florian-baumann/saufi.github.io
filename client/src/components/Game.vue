@@ -4,7 +4,6 @@
       <b-card-text>
         <div class="txt"> 
           {{text}} <br>
-          {{$t(text)}} <br>
           <!--{{names}} <br> 
           {{this.gameid}} <br> 
           {{elementslist}} <br> 
@@ -34,14 +33,14 @@ import axios from 'axios'
 export default {
   name: 'Game',
   props: ['gameid', 'names'],
-  data() {
+  data: function() {
     return {
-      text : 'Lets go!',
+      text : 'Lets go',
       counter : 0,
       init: false,
       end: false,
 
-      name: "tom",     // test für namen var in aufgaben
+      name: 'tom',     // test für namen var in aufgaben
       gamesobj: {},
       games: [
         {
@@ -73,7 +72,6 @@ export default {
   mounted() {
     //this.elementslist = this.elementslist.concat(this.games[this.gameid].elements);     //ursprünglich
     
-    
     //this.elementslist = this.games[this.gameid].elements; 
     //this.elementslist = ["aaa", "bbb"],
     
@@ -89,7 +87,7 @@ export default {
       } else {
         if(this.elementslistleng > this.counter) {
           this.counter ++;
-          this.text = this.elementslist[this.counter-1];
+          this.text = this.elementslist[this.counter-1].replace("NAME", this.names[Math.floor(Math.random()* this.names.length)]);     //name Ersetzen
           this.init = true;
         } else {
           this.text = "Ende";

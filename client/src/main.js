@@ -4,6 +4,7 @@ import router from '../router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import i18n from './i18n'
 
 
 // Install BootstrapVue
@@ -13,5 +14,6 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-  router,
+  i18n,
+  router
 }).$mount('#app')
