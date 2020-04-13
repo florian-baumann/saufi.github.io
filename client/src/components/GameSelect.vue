@@ -2,10 +2,10 @@
     <div class="PiccoSelect container">
         <b-card title="Picco" class=" text-center">
         
-        <b-form-group label="Select Game"> <!--Liste aller spiele zum auswählen -->
+        <b-form-group label="Wähle ein Spiel aus"> <!--Liste aller spiele zum auswählen -->
             <b-form-radio-group v-model="selected" :options="names" value-field="id" text-field="title" stacked></b-form-radio-group>
         </b-form-group>
-        <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+        <!--<div class="mt-3">Selected: <strong>{{ selected }}</strong></div>-->
                   
 
         <!-- Navigations Buttons -->

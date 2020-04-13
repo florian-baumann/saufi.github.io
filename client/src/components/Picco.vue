@@ -1,8 +1,9 @@
 <template>
   <div class="Picco container">
-    <b-card title="Picco" class=" text-center">
+    <b-card title="Saufi" class=" text-center">
       <b-card-text>
-        With supporting text below ... begrüßungstevet ... as a natural lead-in to additional content.
+        Hello Peoplz. <br>
+        Wenn jmd das ganze mit weiterentwickeln will feel free in meine DMs zu sliden
       </b-card-text>
       <!--<router-link to="home"  tag="b-button" variant="success">Home</router-link>-->
       <router-link :to="{path: 'gameselect'}">

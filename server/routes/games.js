@@ -58,6 +58,7 @@ const gameRoutes = (app, fs) => {
     // CREATE ----------------------------------------------------------------------
     
     // neues Spiel erstellen über New.vue
+    //https://robkendal.co.uk/blog/how-to-build-a-restful-node-js-api-server-using-json-files/
     app.post('/new', (req, res) => {
 
         console.log(req.body);          //logging

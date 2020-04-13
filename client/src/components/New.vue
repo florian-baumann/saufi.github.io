@@ -2,10 +2,10 @@
     <div class="gamename container">
       <b-card title="Picco" class="text-center">
       <b-card-text>
-        Add  Card <br>
-        Schreibe <i>NAME</i> ..
+        Elmente hinzufügen <br>
+        Um die individuellen Namen im Spiel zu verwenden schreibe <i>NAME</i>. Z.b. "NAME trinkt 4 Schlücke" -> "Tim tinkt 4 Schlücke" 
       </b-card-text>
-      <b-form-input class="mb-1" v-model="title" placeholder="Enter a title"></b-form-input>
+      <b-form-input class="mb-1" v-model="title" placeholder="Title"></b-form-input>
       
 
       <!-- Liste aller elements
@@ -25,7 +25,9 @@
           </div>
         </div>
       </div>
-  
+
+      <!-- Passwort -->
+      <b-form-input class="mb-1" v-model="pass" placeholder="Passwort"></b-form-input>
 
       <!-- Buttons weiter/zurück-->
       <router-link :to="{path: 'gameselect'}">
@@ -53,9 +55,9 @@
         return {
           newElement:"",
           title: "",
+          pass: "",
           elements: [
-              "hallo",
-              "blaba"
+              "NAME tinkt 4 Schlücke"
           ],
         }
       },
@@ -72,7 +74,8 @@
         },
 
         sendit: function() {
-          axios
+          if (this.pass === "asdf" ) {      //pass check
+            axios
             .post('http://localhost:8081/new', {
               "id": 0,
               "title": this.title,
@@ -89,6 +92,7 @@
               // eslint-disable-next-line no-console
               console.log(error);
             })
+          }          
         }
       }
     }

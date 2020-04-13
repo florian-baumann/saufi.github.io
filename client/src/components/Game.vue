@@ -15,7 +15,7 @@
       <b-button variant="danger" class="float-left">Exit</b-button>
     </router-link>
 
-    <b-button v-if="init === true && end === false" @click="back()" variant="secondary" class="float-left">Eins zurück</b-button>
+    <b-button v-if="init === true && end === false" @click="back()" variant="secondary" class="float-left mx-1">Eins zurück</b-button>
 
 
     <router-link v-if="end === false" :to="{path:'game'}">
@@ -35,7 +35,7 @@ export default {
   props: ['gameid', 'names'],
   data: function() {
     return {
-      text : 'Lets go',
+      text : 'Los gehts (2x weiter drücken)',
       counter : 0,
       init: false,
       end: false,
