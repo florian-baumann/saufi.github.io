@@ -3,7 +3,9 @@
       <b-card title="Picco" class="text-center">
       <b-card-text>
         Add  Card <br>
+        Schreibe <i>NAME</i> ..
       </b-card-text>
+      <b-form-input class="mb-1" v-model="title" placeholder="Enter a title"></b-form-input>
       
 
       <!-- Liste aller elements
@@ -29,8 +31,9 @@
       <router-link :to="{path: 'gameselect'}">
         <b-button variant="secondary" class="float-left">Zurück</b-button>
       </router-link>
-      <router-link :to="{path: 'gameselect'}" @click="sendit(elements)">
-        <b-button variant="success" class="float-right">Speichern</b-button>
+      
+      <router-link :to="{path: 'gameselect'}" >
+        <b-button variant="success" class="float-right" @click="sendit()">Speichern</b-button>
       </router-link>
       </b-card>  
     </div>
@@ -46,37 +49,48 @@
             NewItem
         },
     props: ['selected'],
-        data() {
-            return {
-                newElement:"",
-                title: "",
-                elements: [
-                    "hallo",
-                    "blaba"
-                ],
-            }
+      data() {
+        return {
+          newElement:"",
+          title: "",
+          elements: [
+              "hallo",
+              "blaba"
+          ],
+        }
+      },
+      methods: {
+        addElement: function () {
+          if (this.newElement) {
+            this.elements.push(this.newElement);
+          this.newElement = '';
+          }
         },
-        methods: {
-            addElement: function () {
-                if (this.newElement) {
-                    this.elements.push(this.newElement);
-                this.newElement = '';
-                }
-            },
-            removeElement(index) {
-                this.elements.splice(index, 1);
-            },
-            sendit(arr) {
-                axios.post(
-                    'http://localhost:8081/new',
-                    {arr}
-                )
-                .catch(function(error) {
-                    // eslint-disable-next-line no-console
-                    console.log(error);
-                })
-            }
+
+        removeElement(index) {
+          this.elements.splice(index, 1);
         },
+
+        sendit: function() {
+          axios
+            .post('http://localhost:8081/new', {
+              "id": 0,
+              "title": this.title,
+              "elements": this.elements
+            },
+            {
+              'Content-Type': 'application/json',
+            })
+            .then(function(response) {
+              // eslint-disable-next-line no-console
+              console.log(response);
+            })
+            .catch(function(error) {
+              // eslint-disable-next-line no-console
+              console.log(error);
+            })
+        }
+      }
     }
 
 </script>

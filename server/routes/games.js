@@ -46,12 +46,6 @@ const gameRoutes = (app, fs) => {
 
     //GET names - nur namen und id                  // geht 
     app.get('/names', (req, res) => {
-        // fs.readFile(dataPath, 'utf8', (err, data) => {
-        //     if (err) {
-        //         throw err;
-        //     }
-        //     res.send(JSON.parse(data));
-        // });
 
         var names = [];
         games.forEach(elem => {
@@ -62,22 +56,29 @@ const gameRoutes = (app, fs) => {
     });
 
     // CREATE ----------------------------------------------------------------------
-    app.post('/users', (req, res) => {
+    
+    // neues Spiel erstellen über New.vue
+    app.post('/new', (req, res) => {
+
+        console.log(req.body);          //logging
 
         readFile(data => {
-            const newUserId = Object.keys(data).length + 1;
+            const newGameId = Object.keys(data).length + 0;         //id erstellen
+            req.body.id = newGameId;            //id zuweisen
 
             // add the new user
-            data[newUserId.toString()] = req.body;
+            data[newGameId.toString()] = req.body;          // wert zuweisen
+            
+
 
             writeFile(JSON.stringify(data, null, 2), () => {
-                res.status(200).send('new user added');
+                res.status(200).send('new game added');
             });
         },
             true);
     });
 
-
+    
     // UPDATE ----------------------------------------------------------------------
     // app.put('/users/:id', (req, res) => {
 

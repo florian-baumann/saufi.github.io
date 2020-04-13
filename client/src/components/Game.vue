@@ -68,7 +68,6 @@ export default {
     this.elementslistleng = this.elementslist.length;
   },
 
-
   mounted() {
     //this.elementslist = this.elementslist.concat(this.games[this.gameid].elements);     //ursprünglich
     
