@@ -15,7 +15,7 @@
       <b-button variant="danger" class="float-left">Exit</b-button>
     </router-link>
 
-    <b-button v-if="init === true && end === false" @click="back()" variant="secondary" class="float-left">Eins zurück</b-button>
+    <b-button v-if="init === true && end === false" @click="back()" variant="secondary" class="float-left mx-1">Eins zurück</b-button>
 
 
     <router-link v-if="end === false" :to="{path:'game'}">
@@ -33,14 +33,14 @@ import axios from 'axios'
 export default {
   name: 'Game',
   props: ['gameid', 'names'],
-  data() {
+  data: function() {
     return {
-      text : "Lets go!",
+      text : 'Los gehts (2x weiter drücken)',
       counter : 0,
       init: false,
       end: false,
 
-      //name: "tom",     // test für namen var in aufgaben
+      name: 'tom',     // test für namen var in aufgaben
       gamesobj: {},
       games: [
         {
@@ -68,10 +68,8 @@ export default {
     this.elementslistleng = this.elementslist.length;
   },
 
-
   mounted() {
     //this.elementslist = this.elementslist.concat(this.games[this.gameid].elements);     //ursprünglich
-    
     
     //this.elementslist = this.games[this.gameid].elements; 
     //this.elementslist = ["aaa", "bbb"],
@@ -88,7 +86,7 @@ export default {
       } else {
         if(this.elementslistleng > this.counter) {
           this.counter ++;
-          this.text = this.elementslist[this.counter-1];
+          this.text = this.elementslist[this.counter-1].replace("NAME", this.names[Math.floor(Math.random()* this.names.length)]);     //name Ersetzen
           this.init = true;
         } else {
           this.text = "Ende";

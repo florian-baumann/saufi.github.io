@@ -2,8 +2,10 @@
     <div class="gamename container">
       <b-card title="Picco" class="text-center">
       <b-card-text>
-        Add  Card <br>
+        Elmente hinzufügen <br>
+        Um die individuellen Namen im Spiel zu verwenden schreibe <i>NAME</i>. Z.b. "NAME trinkt 4 Schlücke" -> "Tim tinkt 4 Schlücke" 
       </b-card-text>
+      <b-form-input class="mb-1" v-model="title" placeholder="Title"></b-form-input>
       
 
       <!-- Liste aller elements
@@ -23,14 +25,17 @@
           </div>
         </div>
       </div>
-  
+
+      <!-- Passwort -->
+      <b-form-input class="mb-1" v-model="pass" placeholder="Passwort"></b-form-input>
 
       <!-- Buttons weiter/zurück-->
       <router-link :to="{path: 'gameselect'}">
         <b-button variant="secondary" class="float-left">Zurück</b-button>
       </router-link>
-      <router-link :to="{path: 'gameselect'}" @click="sendit(elements)">
-        <b-button variant="success" class="float-right">Speichern</b-button>
+      
+      <router-link :to="{path: 'gameselect'}" >
+        <b-button variant="success" class="float-right" @click="sendit()">Speichern</b-button>
       </router-link>
       </b-card>  
     </div>
@@ -46,37 +51,50 @@
             NewItem
         },
     props: ['selected'],
-        data() {
-            return {
-                newElement:"",
-                title: "",
-                elements: [
-                    "hallo",
-                    "blaba"
-                ],
-            }
+      data() {
+        return {
+          newElement:"",
+          title: "",
+          pass: "",
+          elements: [
+              "NAME tinkt 4 Schlücke"
+          ],
+        }
+      },
+      methods: {
+        addElement: function () {
+          if (this.newElement) {
+            this.elements.push(this.newElement);
+          this.newElement = '';
+          }
         },
-        methods: {
-            addElement: function () {
-                if (this.newElement) {
-                    this.elements.push(this.newElement);
-                this.newElement = '';
-                }
-            },
-            removeElement(index) {
-                this.elements.splice(index, 1);
-            },
-            sendit(arr) {
-                axios.post(
-                    'http://localhost:8081/new',
-                    {arr}
-                )
-                .catch(function(error) {
-                    // eslint-disable-next-line no-console
-                    console.log(error);
-                })
-            }
+
+        removeElement(index) {
+          this.elements.splice(index, 1);
         },
+
+        sendit: function() {
+          if (this.pass === "asdf" ) {      //pass check
+            axios
+            .post('http://localhost:8081/new', {
+              "id": 0,
+              "title": this.title,
+              "elements": this.elements
+            },
+            {
+              'Content-Type': 'application/json',
+            })
+            .then(function(response) {
+              // eslint-disable-next-line no-console
+              console.log(response);
+            })
+            .catch(function(error) {
+              // eslint-disable-next-line no-console
+              console.log(error);
+            })
+          }          
+        }
+      }
     }
 
 </script>

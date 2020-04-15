@@ -6,7 +6,7 @@
     <div class="gamename container">
       <b-card title="Picco" class="text-center">
       <b-card-text>
-        Add  Players <br>
+        Füge Spieler hinzu <br>
         <!-- Game ausgewählt: {{selected}}   {{gameid}}     -->
       </b-card-text>
       
@@ -21,7 +21,7 @@
       <!-- Username adden Textfeld mit Button-->
       <div class="add my-3">
         <div class="input-group ">
-            <input type="text" class="form-control" placeholder="Username" v-model="newName" @keyup.enter="addName">
+            <input type="text" class="form-control" placeholder="Name" v-model="newName" @keyup.enter="addName">
           <div class="input-group-append">
             <b-button class="float-right" @click="addName()">+</b-button> <!-- v-on und @ das gleiche-->
           </div>
@@ -55,7 +55,6 @@
         newName: '', 
         gameid: this.selected,
         names: [ //hier liegen dann alle namen drin
-          "beccky",
           "tom"
         ]
       }
