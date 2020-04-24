@@ -1,20 +1,18 @@
-#saufi.github.io
+# saufi.github.io
 
-##Client
+## Client
     starten auf Port 8080 mit 
     '''
     cd client
     npm run serve
     '''
 
-    htt
-
-##Server 
+## Server 
     starten auf Port 8081 mit [nodemon](https://nodemon.io/)
     '''
     cd server
     npm start
     ''
 
-##Abrufen
+## Abrufen
     http://localhost:8080/
